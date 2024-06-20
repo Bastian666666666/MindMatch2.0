@@ -1,13 +1,52 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <!--**Titulo -->
+    <ion-title class="ion-text-center">MindMatch</ion-title>
+    <!--**LOGO -->
+    <img src="assets/img/logomindmatch.png" alt="Logo de la aplicación" class="logo">
+    <!--**BIBLIOTECA FONT AWESOME PARA LOS ICONOS DE REDES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">register</ion-title>
+      <ion-title size="large">Registro</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <!-- Formulario de registro -->
+  <!-- Nombre -->
+  <ion-item>
+    <ion-label position="floating">Nombre</ion-label>
+    <ion-input class="input-rosa" type="text" minlength="2" placeholder="Ingrese su nombre"></ion-input>
+  </ion-item>
+
+  <!-- Apellido -->
+  <ion-item>
+    <ion-label position="floating">Apellido</ion-label>
+    <ion-input class="input-rosa" type="text" minlength="2" placeholder="Ingrese su apellido"></ion-input>
+  </ion-item>
+
+  <!-- Usuario -->
+  <ion-item>
+    <ion-label position="floating">Usuario</ion-label>
+    <ion-input class="input-rosa" type="text" minlength="3" maxlength="8" placeholder="Ingrese su usuario" pattern="[a-zA-Z0-9]*"></ion-input>
+  </ion-item>
+
+  <!-- Contraseña -->
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input class="input-rosa" type="password" placeholder="Ingrese su contraseña" pattern="^[0-9A-Za-z]{4,}$" maxlength="12"></ion-input>
+  </ion-item>
+
+  <!-- Año de nacimiento -->
+  <ion-item>
+    <ion-label position="floating">Año de nacimiento</ion-label>
+    <ion-input class="input-rosa" type="number" placeholder="Ingrese su año de nacimiento"></ion-input>
+  </ion-item>
+
+  <!-- Botón para registrar -->
+  <ion-button class="boton-morado" expand="block">Registrarse</ion-button>
 </ion-content>
