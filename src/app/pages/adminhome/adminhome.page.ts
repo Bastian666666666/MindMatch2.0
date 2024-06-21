@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
+//5. Importar el servicio y el router
 import { NavigationExtras, Router } from '@angular/router';
-import { DbserviceService } from '../services/dbservice.service';
+import { DbserviceService } from '../../services/dbservice.service';
 
 @Component({
   selector: 'app-adminhome',
@@ -9,6 +11,7 @@ import { DbserviceService } from '../services/dbservice.service';
 })
 export class AdminhomePage implements OnInit {
 
+  //5.1 Crear un arreglo de usuarios
   usuarios: any = [
     {
       username: "el nombre de usuario",
@@ -19,6 +22,7 @@ export class AdminhomePage implements OnInit {
     }
   ];
 
+  //5.2 Inyectar el router y el servicio
   constructor(private router: Router, private servicioBD: DbserviceService) { }
 
   ngOnInit() {
@@ -41,7 +45,7 @@ export class AdminhomePage implements OnInit {
   }
 
   agregar() {
-    // Implementar lógica para agregar una nueva noticia
+    // Implementar lógica para agregar un nuevo usuario
   }
 
   editar(item: any) {
@@ -49,17 +53,20 @@ export class AdminhomePage implements OnInit {
     let navigationExtras: NavigationExtras = {
       state: {
         idEnviado: item.id,
-        tituloEnviado: item.titulo,
-        textoEnviado: item.texto
+        usernameEnviado: item.username,
+        passwordEnviado: item.password,
+        nombreEnviado: item.nombre,
+        apellidoEnviado: item.apellido,
+        fechaEnviado: item.fecha
       }
     };
     this.servicioBD.presentToast("Aqui");
-    this.router.navigate(['/modificar'], navigationExtras);
+    this.router.navigate(['/admin-modificar'], navigationExtras);
   }
 
   eliminar(item: any) {
-    this.servicioBD.deleteNoticia(item.id);
-    this.servicioBD.presentToast("Noticia Eliminada");
+    this.servicioBD.deleteUsuario(item.id);
+    this.servicioBD.presentToast("Usuario eliminado");
   }
 
 }
