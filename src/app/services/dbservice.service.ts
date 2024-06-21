@@ -4,14 +4,14 @@ import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
 import { Platform, ToastController } from '@ionic/angular';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Usuarios, usuarios } from './usuarios';
+import { Usuarios } from './usuarios';
 @Injectable({
   providedIn: 'root'
 })
 export class DbserviceService {
 
   //4. Esto dice que la base de datos es pública y que es de tipo SQLiteObject
-  public database: SQLiteObject;
+  public database!: SQLiteObject;
   
   //4. Esto es una  tabla de usuarios que se va a crear en la base de datos
   tablaUsuarios: string = "CREATE TABLE IF NOT EXISTS usuario(id INTEGER PRIMARY KEY autoincrement, username VARCHAR(10) NOT NULL, contrasena VARCHAR(10) NOT NULL, nombre VARCHAR(50) NOT NULL, apellido VARCHAR(50) NOT NULL, nacimiento INTEGER(4);";
@@ -19,8 +19,8 @@ export class DbserviceService {
   //4. Esto es un registro de usuario que se va a insertar en la tabla de usuarios para testear la aplicación
   registro: string = "INSERT or IGNORE INTO usuario(id, username, contrasena, nombre, apellido, nacimiento) VALUES (1, 'RoyB', 'contra1234', 'Roy', 'Batty', 1991);";
   
-  //4. Esto es una lista de usuarios que se va a mostrar en la aplicación para manipular los usuarios registrados
-  listaUsuarios = new BehaviorSubject([]);
+  //4. Esto es una lista de usuarios que se va a mostrar en la aplicación para manipular los usuarios registrados, el ejemplo daba un error en la lista de usuarios, por lo que se cambió a un array de usuarios
+  listaUsuarios = new BehaviorSubject<Usuarios[]>([]);
 
   //4. Esto es un booleano que dice si la base de datos está lista para ser usada
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
@@ -32,7 +32,7 @@ export class DbserviceService {
   }
 
   //4. Esto es una función que agregará un usuario a la base de datos tomando como parámetros el username, la contraseña, el nombre, el apellido y la fecha de nacimiento y los insertará en usuario
-  addUsuario(username,contrasena,nombre,apellido,nacimiento){
+  addUsuario(username: string,contrasena: string,nombre: string,apellido: string,nacimiento: number){
     let data=[username,contrasena,nombre,apellido,nacimiento];
     return this.database.executeSql('INSERT INTO usuario(username,contrasena,nombre,apellido,nacimiento) VALUES(?,?)',data)
     .then(res =>{
@@ -42,8 +42,8 @@ export class DbserviceService {
   }
   
   //4. Esto es una función que actualizará un usuario en la base de datos tomando como parámetros el username, la contraseña, el nombre, el apellido y la fecha de nacimiento y los actualizará en usuario
-  updateUsuario(username,contrasena,nombre,apellido,nacimiento, id){
-    let data = [username,contrasena,nombre,apellido,nacimiento, id];
+  updateUsuario(id: number, username: string,contrasena: string,nombre: string,apellido: string,nacimiento: number){
+    let data = [id, username,contrasena,nombre,apellido,nacimiento];
     return this.database.executeSql('UPDATE usuario SET username = ?, contrasena = ?, nombre = ?, apellido = ?, nacimiento = ? WHERE id = ?', data)
     .then(data2 =>{
       this.buscarUsuarios();
@@ -53,7 +53,7 @@ export class DbserviceService {
     }
 
     //4. Esto es una función que eliminará un usuario de la base de datos tomando como parámetro el id y lo eliminará de usuario
-    deleteUsuario(id){
+    deleteUsuario(id: number){
       return this.database.executeSql('DELETE FROM usuario WHERE id = ?', [id])
       .then(a =>{
         this.buscarUsuarios();

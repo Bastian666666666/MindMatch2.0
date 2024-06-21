@@ -29,6 +29,18 @@ const routes: Routes = [
     loadChildren: () => import('./pages/not-found/not-found.module').then( m => m.NotFoundPageModule)
   },
   {
+    path: 'adminhome',
+    loadChildren: () => import('./pages/adminhome/adminhome.module').then( m => m.AdminhomePageModule)
+  },
+  {
+    path: 'admin-agregar',
+    loadChildren: () => import('./pages/admin-agregar/admin-agregar.module').then( m => m.AdminAgregarPageModule)
+  },
+  {
+    path: 'admin-modificar',
+    loadChildren: () => import('./pages/admin-modificar/admin-modificar.module').then( m => m.AdminModificarPageModule)
+  },
+  {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full'
@@ -38,6 +50,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'not-found'
   },
+
 
 ];
 
