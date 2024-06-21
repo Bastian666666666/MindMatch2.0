@@ -1,11 +1,8 @@
 
 //Logotipo de la aplicación
+//Imagen del logo en la pantalla
 .logo {
-  width: 80%; //disminui el tamaño de la imagen a la mitad
-  height: auto;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  transform: scale(0.5);
 }
 
 //Boton morado
