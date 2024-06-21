@@ -18,7 +18,7 @@ export class AdminhomePage implements OnInit {
       password: "el password",
       nombre : "el nombre",
       apellido : "el apellido",
-      fecha : "la fecha de nacimiento",
+      nacimiento : "la fecha de nacimiento",
     }
   ];
 
@@ -57,7 +57,7 @@ export class AdminhomePage implements OnInit {
         passwordEnviado: item.password,
         nombreEnviado: item.nombre,
         apellidoEnviado: item.apellido,
-        fechaEnviado: item.fecha
+        nacimientoEnviado: item.fecha
       }
     };
     this.servicioBD.presentToast("Aqui");

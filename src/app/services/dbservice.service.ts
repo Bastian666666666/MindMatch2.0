@@ -14,10 +14,10 @@ export class DbserviceService {
   public database!: SQLiteObject;
   
   //4. Esto es una  tabla de usuarios que se va a crear en la base de datos
-  tablaUsuarios: string = "CREATE TABLE IF NOT EXISTS usuario(id INTEGER PRIMARY KEY autoincrement, username VARCHAR(10) NOT NULL, contrasena VARCHAR(10) NOT NULL, nombre VARCHAR(50) NOT NULL, apellido VARCHAR(50) NOT NULL, nacimiento INTEGER(4);";
+  tablaUsuarios: string = "CREATE TABLE IF NOT EXISTS usuario(id INTEGER PRIMARY KEY autoincrement, username VARCHAR(10) NOT NULL, password VARCHAR(10) NOT NULL, nombre VARCHAR(50) NOT NULL, apellido VARCHAR(50) NOT NULL, nacimiento VARCHAR(4));";
   
   //4. Esto es un registro de usuario que se va a insertar en la tabla de usuarios para testear la aplicación
-  registro: string = "INSERT or IGNORE INTO usuario(id, username, contrasena, nombre, apellido, nacimiento) VALUES (1, 'RoyB', 'contra1234', 'Roy', 'Batty', 1991);";
+  registro: string = "INSERT or IGNORE INTO usuario(id, username, password, nombre, apellido, nacimiento) VALUES (1, 'RoyB', 'contra1234', 'Roy', 'Batty', '1991');";
   
   //4. Esto es una lista de usuarios que se va a mostrar en la aplicación para manipular los usuarios registrados, el ejemplo daba un error en la lista de usuarios, por lo que se cambió a un array de usuarios
   listaUsuarios = new BehaviorSubject<Usuarios[]>([]);
@@ -32,9 +32,9 @@ export class DbserviceService {
   }
 
   //4. Esto es una función que agregará un usuario a la base de datos tomando como parámetros el username, la contraseña, el nombre, el apellido y la fecha de nacimiento y los insertará en usuario
-  addUsuario(username: string,contrasena: string,nombre: string,apellido: string,nacimiento: number){
-    let data=[username,contrasena,nombre,apellido,nacimiento];
-    return this.database.executeSql('INSERT INTO usuario(username,contrasena,nombre,apellido,nacimiento) VALUES(?,?)',data)
+  addUsuario(username: string,password: string,nombre: string,apellido: string,nacimiento: string){
+    let data=[username,password,nombre,apellido,nacimiento];
+    return this.database.executeSql('INSERT INTO usuario(username,password,nombre,apellido,nacimiento) VALUES(?,?,?,?,?)',data)
     .then(res =>{
       this.buscarUsuarios();
     })
@@ -42,9 +42,9 @@ export class DbserviceService {
   }
   
   //4. Esto es una función que actualizará un usuario en la base de datos tomando como parámetros el username, la contraseña, el nombre, el apellido y la fecha de nacimiento y los actualizará en usuario
-  updateUsuario(id: number, username: string,contrasena: string,nombre: string,apellido: string,nacimiento: number){
-    let data = [id, username,contrasena,nombre,apellido,nacimiento];
-    return this.database.executeSql('UPDATE usuario SET username = ?, contrasena = ?, nombre = ?, apellido = ?, nacimiento = ? WHERE id = ?', data)
+  updateUsuario(id: number, username: string,password: string,nombre: string,apellido: string,nacimiento: string){
+    let data = [id, username,password,nombre,apellido,nacimiento];
+    return this.database.executeSql('UPDATE usuario SET username = ?, password = ?, nombre = ?, apellido = ?, nacimiento = ? WHERE id = ?', data)
     .then(data2 =>{
       this.buscarUsuarios();
     })
@@ -108,10 +108,10 @@ export class DbserviceService {
             items.push({
               id: res.rows.item(i).id,
               username: res.rows.item(i).username,
-              contrasena: res.rows.item(i).contrasena,
+              password: res.rows.item(i).password,
               nombre: res.rows.item(i).nombre,
               apellido: res.rows.item(i).apellido,
-              fecha: res.rows.item(i).fecha
+              nacimiento: res.rows.item(i).nacimiento
             });
           }
         }

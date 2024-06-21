@@ -2,10 +2,10 @@
     export class Usuarios {
         id!: number;
         username!: string;
-        contrasena!: string;
+        password!: string;
         nombre!: string;
         apellido!: string;
-        fecha!: number;
+        nacimiento!: string;
     }
 
 
