@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <span class="titulo-tamaño">Bienvenido a MindMatch</span>
+    </ion-title>
+    <ion-buttons slot="end" class="boton-salir">
+      <ion-button [routerLink]="['/login']">
+        <ion-icon name="exit-outline"></ion-icon>
+        SALIR
+      </ion-button>
+    </ion-buttons>
+      <!--**LOGO: Cree una clase llamada "logo" para disminuir su tamaño en el scss-->
+    <img src="assets/img/logomindmatch.png" alt="Logo de la aplicación" class="logo">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-button class="boton-morado" expand="full" routerLink="/ev">Criterios Diagnósticos</ion-button>
+
+    <ion-button class="boton-morado" expand="full" routerLink="/tutorial">Tutorial</ion-button>    
+  </ion-list>
+</ion-content>

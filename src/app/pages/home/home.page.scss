@@ -1,0 +1,27 @@
+
+//Logotipo de la aplicación
+//Imagen del logo en la pantalla
+.logo {
+  transform: scale(0.5);
+}
+
+//Boton morado
+.boton-morado {
+  --background: rgb(115, 174, 230);
+  --color: white;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+//Titulo "Bienvenido a MindMatch..."
+.titulo-tamaño {
+  font-size: 14px; /* Ajusta este valor a tu gusto */
+}
+
+.boton-salir {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 14px;
+}
