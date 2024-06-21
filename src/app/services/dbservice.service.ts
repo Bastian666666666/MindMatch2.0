@@ -43,14 +43,13 @@ export class DbserviceService {
   
   //4. Esto es una función que actualizará un usuario en la base de datos tomando como parámetros el username, la contraseña, el nombre, el apellido y la fecha de nacimiento y los actualizará en usuario
   updateUsuario(id: number, username: string,password: string,nombre: string,apellido: string,nacimiento: string){
-    let data = [id, username,password,nombre,apellido,nacimiento];
+    let data = [username, password, nombre,apellido,nacimiento, id];
     return this.database.executeSql('UPDATE usuario SET username = ?, password = ?, nombre = ?, apellido = ?, nacimiento = ? WHERE id = ?', data)
     .then(data2 =>{
       this.buscarUsuarios();
     })
     
-    
-    }
+  }
 
     //4. Esto es una función que eliminará un usuario de la base de datos tomando como parámetro el id y lo eliminará de usuario
     deleteUsuario(id: number){
@@ -111,7 +110,7 @@ export class DbserviceService {
               password: res.rows.item(i).password,
               nombre: res.rows.item(i).nombre,
               apellido: res.rows.item(i).apellido,
-              nacimiento: res.rows.item(i).nacimiento
+              nacimiento: res.rows.item(i).nacimiento,
             });
           }
         }
