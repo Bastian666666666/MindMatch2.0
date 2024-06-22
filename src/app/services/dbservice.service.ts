@@ -132,6 +132,18 @@ export class DbserviceService {
       });
       toast.present();
     }
+
+    //6. Para verificar creacion de usuario: Este método verifica si un usuario ya existe en la base de datos tomando como parámetro el username y devuelve un booleano
+    async usuarioExiste(username: string): Promise<boolean> {
+      let query = 'SELECT * FROM usuario WHERE username = ?';
+      try {
+        const res = await this.database.executeSql(query, [username]);
+        return res.rows.length > 0;
+      } catch (e) {
+        this.presentToast("Error al verificar usuario: " + e);
+        return false; // Retorna falso si ocurre un error
+      }
+    }
   
   }
 
