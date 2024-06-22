@@ -18,7 +18,7 @@ export class AdminModificarPage implements OnInit {
   nacimiento = "";
 
 
-
+  //Ojo habiaa agregado ! en lugar de ? en el constructor y no me dejaba pasar los datos
   constructor(private router: Router, private activedroute: ActivatedRoute, private dbservice: DbserviceService) { 
   this.activedroute.queryParams.subscribe(param => {
     if (this.router.getCurrentNavigation()?.extras.state) {
