@@ -15,38 +15,12 @@
       <ion-title size="large">Registro</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <!-- Formulario de registro -->
-  <!-- Nombre -->
-  <ion-item>
-    <ion-label position="floating">Nombre</ion-label>
-    <ion-input class="input-rosa" type="text" minlength="2" placeholder="Ingrese su nombre"></ion-input>
-  </ion-item>
-
-  <!-- Apellido -->
-  <ion-item>
-    <ion-label position="floating">Apellido</ion-label>
-    <ion-input class="input-rosa" type="text" minlength="2" placeholder="Ingrese su apellido"></ion-input>
-  </ion-item>
-
-  <!-- Usuario -->
-  <ion-item>
-    <ion-label position="floating">Usuario</ion-label>
-    <ion-input class="input-rosa" type="text" minlength="3" maxlength="8" placeholder="Ingrese su usuario" pattern="[a-zA-Z0-9]*"></ion-input>
-  </ion-item>
-
-  <!-- Contraseña -->
-  <ion-item>
-    <ion-label position="floating">Contraseña</ion-label>
-    <ion-input class="input-rosa" type="password" placeholder="Ingrese su contraseña" pattern="^[0-9A-Za-z]{4,}$" maxlength="12"></ion-input>
-  </ion-item>
-
-  <!-- Año de nacimiento -->
-  <ion-item>
-    <ion-label position="floating">Año de nacimiento</ion-label>
-    <ion-input class="input-rosa" type="number" placeholder="Ingrese su año de nacimiento"></ion-input>
-  </ion-item>
-
-  <!-- Botón para registrar -->
-  <ion-button class="boton-morado" expand="block">Registrarse</ion-button>
-</ion-content>
+<!-- register.component.html -->
+<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+  <input type="text" name="username" ngModel required placeholder="Username">
+  <input type="password" name="password" ngModel required placeholder="Password">
+  <input type="text" name="nombre" ngModel required placeholder="Nombre">
+  <input type="text" name="apellido" ngModel required placeholder="Apellido">
+  <input type="text" name="nacimiento" ngModel required placeholder="Nacimiento">
+  <button type="submit" [disabled]="!registerForm.valid">Registrar</button>
+</form>
