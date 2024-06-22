@@ -33,8 +33,8 @@ export class DbserviceService {
 
   //4. Esto es una función que agregará un usuario a la base de datos tomando como parámetros el username, la contraseña, el nombre, el apellido y la fecha de nacimiento y los insertará en usuario
   addUsuario(username: string,password: string,nombre: string,apellido: string,nacimiento: string){
-    let data=[username,password,nombre,apellido,nacimiento];
-    return this.database.executeSql('INSERT INTO usuario(username,password,nombre,apellido,nacimiento) VALUES(?,?,?,?,?)',data)
+    let data=[username, password, nombre, apellido, nacimiento];
+    return this.database.executeSql('INSERT INTO usuario(username, password, nombre, apellido, nacimiento) VALUES(?, ?, ?, ?, ?)',data)
     .then(res =>{
       this.buscarUsuarios();
     })
@@ -43,14 +43,13 @@ export class DbserviceService {
   
   //4. Esto es una función que actualizará un usuario en la base de datos tomando como parámetros el username, la contraseña, el nombre, el apellido y la fecha de nacimiento y los actualizará en usuario
   updateUsuario(id: number, username: string,password: string,nombre: string,apellido: string,nacimiento: string){
-    let data = [id, username,password,nombre,apellido,nacimiento];
+    let data = [username, password, nombre,apellido,nacimiento, id];
     return this.database.executeSql('UPDATE usuario SET username = ?, password = ?, nombre = ?, apellido = ?, nacimiento = ? WHERE id = ?', data)
     .then(data2 =>{
       this.buscarUsuarios();
-    })
+    });
     
-    
-    }
+  }
 
     //4. Esto es una función que eliminará un usuario de la base de datos tomando como parámetro el id y lo eliminará de usuario
     deleteUsuario(id: number){

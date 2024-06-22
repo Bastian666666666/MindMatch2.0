@@ -22,11 +22,12 @@ export class AdminModificarPage implements OnInit {
   constructor(private router: Router, private activedroute: ActivatedRoute, private dbservice: DbserviceService) { 
   this.activedroute.queryParams.subscribe(param => {
     if (this.router.getCurrentNavigation()?.extras.state) {
-      this.username = this.router.getCurrentNavigation()!.extras.state!['usernameEnviado'];
-      this.password = this.router.getCurrentNavigation()!.extras.state!['passwordEnviado'];
-      this.nombre = this.router.getCurrentNavigation()!.extras.state!['nombreEnviado'];
-      this.apellido = this.router.getCurrentNavigation()!.extras.state!['apellidoEnviado'];
-      this.nacimiento = this.router.getCurrentNavigation()!.extras.state!['nacimientoEnviado'];
+      this.id = this.router.getCurrentNavigation()!.extras.state!['idEnviado'];
+      this.username = this.router.getCurrentNavigation()?.extras?.state?.['usernameEnviado'];
+      this.password = this.router.getCurrentNavigation()?.extras?.state?.['passwordEnviado'];
+      this.nombre = this.router.getCurrentNavigation()?.extras?.state?.['nombreEnviado'];
+      this.apellido = this.router.getCurrentNavigation()?.extras?.state?.['apellidoEnviado'];
+      this.nacimiento = this.router.getCurrentNavigation()?.extras?.state?.['nacimientoEnviado'];
     }
   })
 }
